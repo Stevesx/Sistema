@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Home extends CI_Controller
+class Sistema extends CI_Controller
 {
     public function __construct()
     {
@@ -13,15 +13,20 @@ class Home extends CI_Controller
             redirect('login');
         }
 
-
     }
 
-    public function index()
-    {
+    public function index(){
 
-        $this->load->view('layout/header');
-        $this->load->view('home/index');
+        $data = array(
+            'titulo' => 'Editar informações do sistema',
+            'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id'=> 1))
+        );
+
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('sistema/index');
         $this->load->view('layout/footer');
+
     }
 
 }
